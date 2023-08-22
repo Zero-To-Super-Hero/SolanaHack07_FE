@@ -21,10 +21,10 @@ const DesktopMenu = () => {
         <div className="grid grid-flow-row grid-cols-4 gap-4 items-center">
             <div className="col-span-2">
                 <Link href={"/create-event"}>
-                    <Button>Create your event now</Button>
+                    <Button variant={"outline"}>Create your event now</Button>
                 </Link>
             </div>
-            <Button variant={"default"} className="col-span-1">
+            <Button variant={"outline"} className="col-span-1">
                 <p>Login</p>
             </Button>
             <div className="col-span-1">

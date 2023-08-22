@@ -25,7 +25,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
                 <WalletProvider wallets={wallets} autoConnect>
                     <WalletModalProvider>
                         <Header />
-                        <main className="flex justify-center p-4 min-h-screen">
+                        <main className="flex justify-center md:p-4 min-h-screen">
                             {children}
                         </main>
                     </WalletModalProvider>
