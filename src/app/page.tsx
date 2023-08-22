@@ -1,5 +1,5 @@
 "use client"
-
+import { SpinnerInfinity } from 'spinners-react';
 import React, { Suspense } from 'react';
 import Typical from "react-typical";
 import { Separator } from "@/components/ui/separator"
@@ -10,7 +10,7 @@ export default function Home() {
     <div className='container'>
       <div className='grid grid-cols-1  md:grid-cols-12 items-center gap-5 '>
         <div className='col-span-1 md:col-span-6'>
-          <p className='font-extrabold text-4xl'>With an NFT ticket, you can:</p>
+          <p className='font-extrabold text-4xl text-primary'>With an NFT ticket, you can:</p>
           <Separator orientation='horizontal' className='my-5' />
           <ul className='my-6 ml-6 list-disc font-mono text-muted-foreground'>
             <li>
@@ -49,10 +49,11 @@ export default function Home() {
           </div>
 
         </div>
-        <div className='col-span-1 md:col-span-6 m-auto h-[500px]'>
-          <Suspense fallback={<div>Loading...</div>}>
+        <div className='col-span-1 md:col-span-6 h-[500px] flex justify-center items-center'>
+          <Suspense fallback={<SpinnerInfinity size={200} enabled={true} />}>
             <Spline scene="https://prod.spline.design/lz7hvqH6a0vd1xDE/scene.splinecode" />
           </Suspense>
+
         </div>
       </div>
     </div>
