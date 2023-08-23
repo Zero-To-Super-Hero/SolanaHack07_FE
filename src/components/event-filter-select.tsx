@@ -13,7 +13,7 @@ import {
 export function EventFilterSelect() {
   return (
     <Select>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-full">
         <SelectValue placeholder="Select filter" />
       </SelectTrigger>
       <SelectContent>
