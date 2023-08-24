@@ -104,6 +104,7 @@ export const CreateEventForm = () => {
     }
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
+        console.log(values)
         try {
             if (!publicKey) {
                 toast({

@@ -11,6 +11,8 @@ export function TokenBalance(body: TokenBalanceRequestBody) {
             headers: {
                 "content-type": "application/json",
                 "x-api-key": hi.SHYFT_API_KEY,
+                // Accept: "*/*",
+                // "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify(body),
         }
@@ -23,7 +25,9 @@ export function mintNFT(body: MintNFTRequestBody) {
         method: "POST",
         headers: {
             "content-type": "application/json",
-            "x-api-key": process.env.NEXT_PUBLIC_SHYFT_API_KEY!,
+            "x-api-key": hi.SHYFT_API_KEY,
+            // Accept: "*/*",
+            // "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify(body),
     })
@@ -37,8 +41,10 @@ export function upload(file: File) {
         {
             method: "POST",
             headers: {
-                "content-type": "application/json",
-                "x-api-key": process.env.SHYFT_API_KEY!,
+                // "content-type": "application/json",
+                "x-api-key": hi.SHYFT_API_KEY,
+                // "Accept": "*/*",
+                // "Access-Control-Allow-Origin": "*"
             },
             body: formdata,
         }
@@ -52,7 +58,9 @@ export function uploadMetadata(metadata: UploadMetadataRequestBody) {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                "x-api-key": process.env.SHYFT_API_KEY!,
+                "x-api-key": hi.SHYFT_API_KEY,
+                // "Accept": "*/*",
+                // "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify(metadata),
         }

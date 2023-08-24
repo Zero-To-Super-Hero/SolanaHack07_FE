@@ -9,7 +9,7 @@ export type hitype = {
 export const hi: hitype = {
     SHYFT_API_ENDPOINT: "https://api.shyft.to/sol/v1",
     SHYFT_API_KEY: "QedCXi-__1YxirlR",
-    SHYFT_TREE: "BGcCvCUkM4xJG9wm5bLuNnfEHG3qwr3i52n7F2MV8dPp",
+    SHYFT_TREE: "Fn1pzcXiBdPUoM1a9KDyiDS7uU2Mburh1AyiAPRG9CQ1",
 }
 
 export const Networks = ["mainnet-beta", "devnet", "testnet"] as const
