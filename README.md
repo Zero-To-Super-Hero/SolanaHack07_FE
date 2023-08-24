@@ -1,36 +1,50 @@
-# SolanaHack07
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hi everyone. 👋👋👋👋
+# We are the 'Zero-To-Super-Hero' !!!
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## 🚀 About My Team
+Trần Phú Đạt (Leader) Role: Full-Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Lưu Đức Danh (Deputy Leader) Role: Full-Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Lâm Sâm Chấn (Member) Role: Full-Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Đỗ Vy Thảo (Member) Role: Full-Stack
 
-## Learn More
+Nguyễn Văn Thanh Trung (Member) Role: Full-Stack
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# NFTs Collection ticket for event.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Our team's project is: A platform to support event organizers in creating events and event tickets, and subsequently, facilitating the airdrop of gifts or allowing users to exchange gifts using NFTs purchased from the events.
 
-## Deploy on Vercel
+BE: Build a database and API center for calling and updating purchase status using C# with SQL Server.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+After our team finishes the BE, we will switch to working on the FE.
+ 
+## Technology Used 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project makes use of the following technology
+
+- Candy Pay
+- Shyft
+- C#
+- ....
+
+
+
+
+## Demo
+
+Link demo: https://solana-hack07-90waw2yww-bapcai.vercel.app/
+
+
+## Authors
+
+- [@ZeroToSuperHero](https://github.com/Zero-To-Super-Hero)
+
+
+![Logo](https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/366632615_1669177740233611_2633911231662226355_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=e3f864&_nc_ohc=7YWC_oA1zZUAX-YeNa0&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfBkYo8pAFftbIed1PnaunkHcLF6NpR2qSOqUnXq5PSfKQ&oe=64EC8B27)
+
