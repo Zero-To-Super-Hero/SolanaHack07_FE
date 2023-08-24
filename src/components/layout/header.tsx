@@ -13,7 +13,10 @@ export default function Header() {
                         <MobileMenu />
                     </nav> */}
                 {/* <nav className="mobile-menu"> */}
-                <div className="flex flex-row flex-nowrap space-x-2">
+                <div className="flex flex-row flex-nowrap space-x-2 justify-between items-center">
+                    <Link href={"/create-event"} className="hidden lg:inline-block">
+                        <p className="outline-2 border-primary font-extrabold border p-2 rounded text-primary hover:bg-primary hover:outline-0 hover:text-black">Create event now!</p>
+                    </Link>
                     <ConnectWalletButton />
                     <nav>
                         <MobileMenu />

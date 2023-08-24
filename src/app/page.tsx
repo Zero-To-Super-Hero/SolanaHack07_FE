@@ -41,7 +41,6 @@ export default function Home() {
             <strong className='text-primary text-xl'>
               Hurry up!
             </strong>
-
             <div className='text-muted-foreground font-mono h-10'>
               <Typical
                 steps={[
@@ -77,14 +76,14 @@ export default function Home() {
           </div>
         </div>
         <div className='text-center'>
-          <p className='text-4xl text-primary font-extrabold m-10'>List of event</p>
+          <p className='text-4xl text-primary font-extrabold m-10 uppercase'>List of event</p>
         </div>
         <div className='my-10'>
           <div className='grid grid-cols-1 md:grid-cols-12 items-center gap-5'>
             {
               Events.map((nftE, index) => (
                 <div key={index} className='lg:col-span-3 md:col-span-6'>
-                  <Link href={`/event-detail/${nftE.TokkenAddress}`}>
+                  <Link href={`/event-detail/${nftE.TokenAddress}`}>
                     <EventCardItem nftEvent={nftE} />
                   </Link>
                 </div>

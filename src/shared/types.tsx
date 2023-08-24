@@ -1,10 +1,10 @@
 import { type } from "os"
 
-
+export const Networks = ["mainnet-beta", "devnet", "testnet"] as const
 export type Network = "mainnet-beta" | "devnet" | "testnet"
 
 export type NftEvent = {
-    TokkenAddress: string
+    TokenAddress: string
     Name: string
     Description?: string
     Date: Date | string
@@ -15,7 +15,7 @@ export type NftEvent = {
 
 export const Events: NftEvent[] = [
     {
-        TokkenAddress: "1",
+        TokenAddress: "1",
         Name: "Happy Bee",
         Description: "FPT Polytechnic concert in HCM city 2023",
         Image: "https://picsum.photos/600/600?random=1",
@@ -24,7 +24,7 @@ export const Events: NftEvent[] = [
         Price: 1,
     },
     {
-        TokkenAddress: "2",
+        TokenAddress: "2",
         Name: "Happy Lion",
         Image: "https://picsum.photos/600/600?random=2",
         Date: new Date(2023, 8, 10, 6, 10, 0),
@@ -57,4 +57,50 @@ export type Info = {
     name: string;
     symbol: string;
     image: string;
+}
+
+//mint nft
+export type MintNFTRequestBody = {
+    network: Network
+    creator_wallet: string
+    metadata_uri: string
+    merkle_tree: string
+    is_delegate_authority?: boolean
+    collection_address?: string
+    max_supply?: number
+    primary_sale_happend?: boolean
+    is_mutable?: boolean
+    receiver?: string
+    fee_payer?: string
+}
+
+export type MintNFTResult = {
+    encoded_transaction: string
+    mint: string
+    signers: Array<string>
+}
+
+//upload
+export type UploadResult = {
+    cid: string
+    uri: string
+}
+
+export type UploadMetadataRequestBody = {
+    name: string
+    symbol: string
+    description: string
+    image: string
+    attributes: Array<{
+        trait_type: string
+        value: any
+    }>
+    royalty: number
+    creator: string
+    share: number
+    external_url: string
+    files: Array<{
+        uri: string
+        type: string
+    }>
 }
