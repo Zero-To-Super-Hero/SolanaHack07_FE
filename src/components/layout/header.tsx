@@ -8,15 +8,17 @@ export default function Header() {
             <div className="container flex flex-row justify-between items-center">
                 <Link href="/"><p className="text-2xl font-extrabold tracking-tighter lg:text-5xl text-primary underline shadow-transparent drop-shadow-md">Bapcai&apos;s Ticket</p></Link>
 
-                <nav className="desktop-menu">
-                    <DesktopMenu />
-                </nav>
-                <ConnectWalletButton />
-                <nav className="mobile-menu">
-                    <div>
+
+                {/* <nav className="desktop-menu">
                         <MobileMenu />
-                    </div>
-                </nav>
+                    </nav> */}
+                {/* <nav className="mobile-menu"> */}
+                <div className="flex flex-row flex-nowrap space-x-2">
+                    <ConnectWalletButton />
+                    <nav>
+                        <MobileMenu />
+                    </nav>
+                </div>
             </div>
         </header>
     )

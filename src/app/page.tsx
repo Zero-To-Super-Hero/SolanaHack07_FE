@@ -43,15 +43,15 @@ export default function Home() {
             </strong>
 
             <div className='text-muted-foreground font-mono h-10'>
-              {/* <Typical
-              steps={[
-                "Join us to explore the new world of NFT tickets.", 1300,
-                "You just need to register a free account and start creating your event.", 1300,
-                "The number of NFT tickets is limited!", 1300
-              ]}
-              loop={Infinity}
-              wrapper="p"
-            /> */}
+              <Typical
+                steps={[
+                  "Join us to explore the new world of NFT tickets.", 1300,
+                  "You just need to register a free account and start creating your event.", 1300,
+                  "The number of NFT tickets is limited!", 1300
+                ]}
+                loop={Infinity}
+                wrapper="p"
+              />
             </div>
             <div className='my-5 flex items-center justify-center'>
               <Button className='p-8' variant={'default'}><strong className='font-extrabold text-xl'>Sign up now!</strong></Button>

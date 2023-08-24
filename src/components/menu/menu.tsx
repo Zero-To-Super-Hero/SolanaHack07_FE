@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 
 
 import { ThemeButton } from "@/components/theme/theme-button";
+import { ScrollArea } from "../ui/scroll-area";
 
 const DesktopMenu = () => {
     return (
@@ -65,7 +66,7 @@ const MobileMenu = () => {
             </SheetTrigger>
             <SheetContent className="w-11/12 md:w-[540px]">
                 <SheetHeader className="text-left">
-                    <SheetTitle>Jay Andy</SheetTitle>
+                    <SheetTitle><p className="text-2xl font-extrabold tracking-tighter lg:text-4xl text-primary underline shadow-transparent drop-shadow-md">Bapcai&apos;s Ticket</p></SheetTitle>
                     <SheetDescription >
                         <div className="grid grid-flow-row grid-cols-12">
 
@@ -80,26 +81,33 @@ const MobileMenu = () => {
                         <Separator className="my-4" />
                     </SheetDescription>
                 </SheetHeader>
-                <div className="w-full">
-                    <div id="Link-section-1" className="flex flex-col space-y-2">
-                        {/* <Link href={"/About"}>
-                            <p className="text-base font-semibold text-foreground">About ~ <em className="text-muted-foreground text-xs font-serif">Some information about me</em></p>
-                        </Link>
-                        <Link href={"/Portfolio"}>
-                            <p className="text-base font-semibold text-foreground">Portfolio ~ <em className="text-muted-foreground text-xs font-serif">Jay Andy</em></p>
-                        </Link>
-                        <Link href={"/Blog"}>
-                            <p className="text-base font-semibold text-foreground">Blogs ~ <em className="text-muted-foreground text-xs whitespace-nowrap font-serif">I was write some thing, wanna read?</em></p>
-                        </Link> */}
+                <ScrollArea className="h-max w-full">
+                    <div className="w-full">
+                        <div id="Link-section-1" className="flex flex-col space-y-2">
+                            <Link href={"/profile"}>
+                                <p className="text-base font-semibold text-foreground">Profile ~ <em className="text-muted-foreground text-xs font-serif">Your wallet profile information</em></p>
+                            </Link>
+                            <Link href={"/document"}>
+                                <p className="text-base font-semibold text-foreground">Document ~ <em className="text-muted-foreground text-xs font-serif">Document about BapCai platform</em></p>
+                            </Link>
+                            <Link href={"/create-event"}>
+                                <p className="text-base font-semibold text-foreground">Create Event ~ <em className="text-muted-foreground text-xs font-serif">You can create event here</em></p>
+                            </Link>
+                            <Link href={"/manage-event"}>
+                                <p className="text-base font-semibold text-foreground">Manage Event ~ <em className="text-muted-foreground text-xs whitespace-nowrap font-serif">Manage your event&apos;s infor</em></p>
+                            </Link>
+
+                        </div>
+                        <Separator className="my-2 w-9/12" />
+                        {/* <ContactDropDownMenu /> */}
+                        <Separator className="my-4" />
+                        <div className="fixed bottom-5 flex flex-row space-x-2 items-center">
+                            <Link href={"https://twitter.com/DatTranM4"} className="text-muted-foreground whitespace-nowrap" target="_blank">
+                                Dat Tran & ZTSH - <FontAwesomeIcon className="w-[16px] h-[16px] text-foreground" icon={faCopyright} /> - 2023</Link>
+                        </div>
                     </div>
-                    <Separator className="my-2 w-9/12" />
-                    {/* <ContactDropDownMenu /> */}
-                    <Separator className="my-4" />
-                    <div className="fixed bottom-5 flex flex-row space-x-2 items-center">
-                        <Link href={"https://twitter.com/DatTranM4"} className="text-muted-foreground whitespace-nowrap" target="_blank">
-                            Dat Tran - <FontAwesomeIcon className="w-[16px] h-[16px] text-foreground" icon={faCopyright} /> 2023</Link>
-                    </div>
-                </div>
+                </ScrollArea>
+
                 <SheetFooter>
                     <SheetClose asChild>
                         <p className="text-base text-foreground font-normal font-serif text-left">
