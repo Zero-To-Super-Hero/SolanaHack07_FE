@@ -16,7 +16,7 @@ Lâm Sâm Chấn (Member) Role: Full-Stack
 Nguyễn Văn Thanh Trung (Member) Role: Full-Stack
 
 
-# NFTs Collection ticket for event.
+# Create events as nft collections and tickets as nft tokens in those collections
 
 Our team's project is: A platform to support event organizers in creating events and event tickets, and subsequently, facilitating the airdrop of gifts or allowing users to exchange gifts using NFTs purchased from the events.
 
