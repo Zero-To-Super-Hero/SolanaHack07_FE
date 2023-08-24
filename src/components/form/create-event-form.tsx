@@ -23,9 +23,8 @@ import { useToast } from "../ui/use-toast"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
+import { hi } from "@/shared/types";
 
-require('dotenv').config()
-const SHYFT_TREE = process.env.SHYFT_TREE!
 const formSchema = z.object({
     image: z.any().refine((file) => !!file, "Image is required."),
     name: z
@@ -154,7 +153,7 @@ export const CreateEventForm = () => {
             const response = await mintNFT({
                 creator_wallet: publicKey.toBase58(),
                 metadata_uri: uploadMetadataResponse.result.uri,
-                merkle_tree: SHYFT_TREE,
+                merkle_tree: hi.SHYFT_TREE,
                 collection_address: values.collectionAddress,
                 receiver: values.receiver,
                 fee_payer: publicKey.toBase58(),

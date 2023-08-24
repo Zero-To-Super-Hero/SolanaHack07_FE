@@ -1,10 +1,15 @@
 import { type } from "os"
 
-declare global {
-    interface Window {
-        SHYFT_API_ENDPOINT: string;
-        SHYFT_API_KEY: string;
-    }
+export type hitype = {
+    SHYFT_API_ENDPOINT: string
+    SHYFT_API_KEY: string
+    SHYFT_TREE: string
+}
+
+export const hi: hitype = {
+    SHYFT_API_ENDPOINT: "https://api.shyft.to/sol/v1",
+    SHYFT_API_KEY: "QedCXi-__1YxirlR",
+    SHYFT_TREE: "BGcCvCUkM4xJG9wm5bLuNnfEHG3qwr3i52n7F2MV8dPp",
 }
 
 export const Networks = ["mainnet-beta", "devnet", "testnet"] as const
