@@ -9,7 +9,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
-import { NftEvent } from "@/app/shared/types"
+import { NftEvent } from "@/shared/types"
 import { Label } from "@/components/ui/label"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCalendarCheck, faLocationDot } from "@fortawesome/free-solid-svg-icons"

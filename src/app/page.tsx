@@ -8,7 +8,7 @@ import { EventFilterSelect } from '@/components/event-filter-select';
 import { Search } from '@/components/search-bar';
 import { EventCardItem } from '@/components/event-card-item';
 
-import { events } from "@/app/shared/types"
+import { events } from "@/shared/types"
 
 import Link from 'next/link';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
