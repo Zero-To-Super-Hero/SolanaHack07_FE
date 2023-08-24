@@ -22,6 +22,9 @@ import { Textarea } from "../ui/textarea"
 import { useToast } from "../ui/use-toast"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { useEffect, useState } from "react"
+
+require('dotenv').config()
 
 const formSchema = z.object({
     image: z.any().refine((file) => !!file, "Image is required."),
@@ -79,16 +82,27 @@ export const CreateEventForm = () => {
             description: "",
             externalUrl: "",
             collectionAddress: "",
-            merkle_tree: "",
+            merkle_tree: process.env.SHYFT_TREE!,
             receiver: "",
             network: "devnet",
         },
     })
 
+    const [defaultField, setDefaultField] = useState({ trait_type: "", value: "" })
+
     const { fields, append, remove } = useFieldArray({
         control: form.control,
         name: "attributes",
+
     })
+    useEffect(() => {
+        append({ trait_type: "Location", value: "" });
+        append({ trait_type: "Time", value: "" });
+    }, [append]);
+
+    const handleAppendField = () => {
+        append(defaultField)
+    }
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
@@ -348,10 +362,10 @@ export const CreateEventForm = () => {
                             onClick={(event) => {
                                 event.stopPropagation()
                                 event.preventDefault()
-                                append({ trait_type: "", value: "" })
+                                handleAppendField()
                             }}
                             size="sm"
-                            className="self-start mt-2"
+                            className="self-start mt-4"
                         >
                             <p>
                                 <span><FontAwesomeIcon icon={faPlus} size="lg" /></span> Add attributes
