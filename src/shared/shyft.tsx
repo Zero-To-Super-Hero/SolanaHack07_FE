@@ -18,7 +18,8 @@ export function TokenBalance(body: TokenBalanceRequestBody) {
 }
 
 export function mintNFT(body: MintNFTRequestBody) {
-    return fetcher<BaseResponse<MintNFTResult>>(`${process.env.SHYFT_API_ENDPOINT}/nft/compressed/mint`, {
+    return fetcher<BaseResponse<MintNFTResult>>(
+        `${process.env.SHYFT_API_ENDPOINT!}/nft/compressed/mint`, {
         method: "POST",
         headers: {
             "content-type": "application/json",
@@ -31,9 +32,8 @@ export function mintNFT(body: MintNFTRequestBody) {
 export function upload(file: File) {
     const formdata = new FormData();
     formdata.append("file", file, file.name);
-
     return fetcher<BaseResponse<UploadResult>>(
-        `${process.env.SHYFT_API_ENDPOINT}/storage/upload`,
+        `${process.env.SHYFT_API_ENDPOINT!}/storage/upload`,
         {
             method: "POST",
             headers: {
@@ -47,7 +47,7 @@ export function upload(file: File) {
 
 export function uploadMetadata(metadata: UploadMetadataRequestBody) {
     return fetcher<BaseResponse<UploadResult>>(
-        `${process.env.SHYFT_API_ENDPOINT}/metadata/create`,
+        `${process.env.SHYFT_API_ENDPOINT!}/metadata/create`,
         {
             method: "POST",
             headers: {

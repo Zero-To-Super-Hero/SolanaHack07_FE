@@ -82,7 +82,7 @@ export const CreateEventForm = () => {
             description: "",
             externalUrl: "",
             collectionAddress: "",
-            merkle_tree: process.env.SHYFT_TREE!,
+            merkle_tree: "",
             receiver: "",
             network: "devnet",
         },
@@ -106,8 +106,6 @@ export const CreateEventForm = () => {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            console.log(values)
-
             if (!publicKey) {
                 toast({
                     variant: "destructive",
@@ -115,7 +113,6 @@ export const CreateEventForm = () => {
                 })
                 return
             }
-
             const uploadResponse = await upload(values.image)
 
             if (!uploadResponse.success) {
@@ -153,11 +150,11 @@ export const CreateEventForm = () => {
                 })
                 return
             }
-
+            
             const response = await mintNFT({
                 creator_wallet: publicKey.toBase58(),
                 metadata_uri: uploadMetadataResponse.result.uri,
-                merkle_tree: values.merkle_tree,
+                merkle_tree: process.env.SHYFT_TREE!,
                 collection_address: values.collectionAddress,
                 receiver: values.receiver,
                 fee_payer: publicKey.toBase58(),
