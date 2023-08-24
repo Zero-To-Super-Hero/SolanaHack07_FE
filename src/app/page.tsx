@@ -7,7 +7,9 @@ import { Button } from '@/components/ui/button';
 import { EventFilterSelect } from '@/components/event-filter-select';
 import { Search } from '@/components/search-bar';
 import { EventCardItem } from '@/components/event-card-item';
-import { NftEvent } from '@/app/shared/types';
+
+import { events } from "@/app/shared/types"
+
 import Link from 'next/link';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 export default function Home() {
@@ -82,7 +84,7 @@ export default function Home() {
             {
               events.map((nftE, index) => (
                 <div key={index} className='lg:col-span-3 md:col-span-6'>
-                  <Link href={"/event-details/1"}>
+                  <Link href={`/event-detail/${nftE.TokkenAddress}`}>
                     <EventCardItem nftEvent={nftE} />
                   </Link>
                 </div>
@@ -96,22 +98,3 @@ export default function Home() {
   )
 }
 
-const events: NftEvent[] = [
-  {
-    CollectionId: "1",
-    Name: "Happy Bee",
-    Description: "FPT Polytechnic concert in HCM city 2023",
-    Image: "https://picsum.photos/600/600?random=1",
-    Date: new Date(2023, 8, 10, 6, 30, 0),
-    Location: "QTSC",
-    Price: 1,
-  },
-  {
-    CollectionId: "2",
-    Name: "Happy Lion",
-    Image: "https://picsum.photos/600/600?random=2",
-    Date: new Date(2023, 8, 10, 6, 10, 0),
-    Location: "Some Where",
-    Price: 2.2,
-  },
-]
