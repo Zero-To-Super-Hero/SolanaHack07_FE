@@ -14,21 +14,29 @@ import { faBars, faCopyright } from "@fortawesome/free-solid-svg-icons";
 // import { faTwitter, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+
+
 import { ThemeButton } from "@/components/theme/theme-button";
 
 const DesktopMenu = () => {
     return (
-        <div className="grid grid-flow-row grid-cols-4 gap-4 items-center">
+        <div className="grid grid-flow-row grid-cols-6 gap-4 items-center justify-items-end">
             <div className="col-span-2">
-                <Link href={"/create-event"}>
-                    <Button variant={"outline"}>Create your event now</Button>
-                </Link>
+
             </div>
-            <Button variant={"outline"} className="col-span-1">
-                <p>Login</p>
-            </Button>
             <div className="col-span-1">
-                <ThemeButton />
+
+            </div>
+            <div className="col-span-1">
+
+            </div>
+            <div className="col-span-2">
+                <div className="flex justify-center items-center space-x-4">
+                    <Link href={"/create-event"}>
+                        <Button variant={"default"} className="w-full"><p className="text-bold text-base">Create event now!</p></Button>
+                    </Link>
+                    <ThemeButton />
+                </div>
             </div>
         </div>
     )
@@ -60,9 +68,9 @@ const MobileMenu = () => {
                     <SheetTitle>Jay Andy</SheetTitle>
                     <SheetDescription >
                         <div className="grid grid-flow-row grid-cols-12">
+
                             <div className="col-span-9 text-foreground font-normal font-serif text-justify text-base">
                                 {greeting}. 👋
-
                             </div>
                             <Separator orientation="vertical" className="ms-4" />
                             <div className="col-span-2 flex justify-center">
@@ -74,7 +82,7 @@ const MobileMenu = () => {
                 </SheetHeader>
                 <div className="w-full">
                     <div id="Link-section-1" className="flex flex-col space-y-2">
-                        <Link href={"/About"}>
+                        {/* <Link href={"/About"}>
                             <p className="text-base font-semibold text-foreground">About ~ <em className="text-muted-foreground text-xs font-serif">Some information about me</em></p>
                         </Link>
                         <Link href={"/Portfolio"}>
@@ -82,7 +90,7 @@ const MobileMenu = () => {
                         </Link>
                         <Link href={"/Blog"}>
                             <p className="text-base font-semibold text-foreground">Blogs ~ <em className="text-muted-foreground text-xs whitespace-nowrap font-serif">I was write some thing, wanna read?</em></p>
-                        </Link>
+                        </Link> */}
                     </div>
                     <Separator className="my-2 w-9/12" />
                     {/* <ContactDropDownMenu /> */}
