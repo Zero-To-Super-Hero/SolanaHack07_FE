@@ -8,7 +8,7 @@ import { EventFilterSelect } from '@/components/event-filter-select';
 import { Search } from '@/components/search-bar';
 import { EventCardItem } from '@/components/event-card-item';
 
-import { events } from "@/shared/types"
+import { Events } from "@/shared/types"
 
 import Link from 'next/link';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
@@ -82,7 +82,7 @@ export default function Home() {
         <div className='my-10'>
           <div className='grid grid-cols-1 md:grid-cols-12 items-center gap-5'>
             {
-              events.map((nftE, index) => (
+              Events.map((nftE, index) => (
                 <div key={index} className='lg:col-span-3 md:col-span-6'>
                   <Link href={`/event-detail/${nftE.TokkenAddress}`}>
                     <EventCardItem nftEvent={nftE} />

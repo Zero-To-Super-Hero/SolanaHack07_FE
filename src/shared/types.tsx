@@ -1,6 +1,9 @@
 import { type } from "os"
 
-interface NftEvent {
+
+export type Network = "mainnet-beta" | "devnet" | "testnet"
+
+export type NftEvent = {
     TokkenAddress: string
     Name: string
     Description?: string
@@ -10,9 +13,7 @@ interface NftEvent {
     Location?: string
 }
 
-export type { NftEvent }
-
-const events: NftEvent[] = [
+export const Events: NftEvent[] = [
     {
         TokkenAddress: "1",
         Name: "Happy Bee",
@@ -32,4 +33,28 @@ const events: NftEvent[] = [
     },
 ]
 
-export { events }
+export type BaseResponse<T> = {
+    success: boolean
+    message: string
+    result: T
+}
+
+export type TokenBalanceRequestBody = {
+    network: string
+    wallet: string,
+    token_address: string
+}
+
+export type TokenBalance = {
+    address: string;
+    balance: number;
+    associated_account: string;
+    info: Info;
+    isFrozen: boolean;
+}
+
+export type Info = {
+    name: string;
+    symbol: string;
+    image: string;
+}

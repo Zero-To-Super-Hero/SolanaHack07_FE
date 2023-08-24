@@ -1,4 +1,4 @@
-import { events } from "@/shared/types"
+import { Events } from "@/shared/types"
 
 
 export default function Page({ params }: { params: { TokkenAddress: string } }) {
