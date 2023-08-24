@@ -26,6 +26,7 @@ export default function RootLayout({
           </Layout>
           <Toaster />
         </ThemeProvider>
+        
       </body>
     </html>
   )

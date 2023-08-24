@@ -1,5 +1,12 @@
 import { type } from "os"
 
+declare global {
+    interface Window {
+        SHYFT_API_ENDPOINT: string;
+        SHYFT_API_KEY: string;
+    }
+}
+
 export const Networks = ["mainnet-beta", "devnet", "testnet"] as const
 export type Network = "mainnet-beta" | "devnet" | "testnet"
 

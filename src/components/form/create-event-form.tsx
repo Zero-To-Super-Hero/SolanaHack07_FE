@@ -25,7 +25,7 @@ import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 
 require('dotenv').config()
-
+const SHYFT_TREE = process.env.SHYFT_TREE!
 const formSchema = z.object({
     image: z.any().refine((file) => !!file, "Image is required."),
     name: z
@@ -150,11 +150,11 @@ export const CreateEventForm = () => {
                 })
                 return
             }
-            
+
             const response = await mintNFT({
                 creator_wallet: publicKey.toBase58(),
                 metadata_uri: uploadMetadataResponse.result.uri,
-                merkle_tree: process.env.SHYFT_TREE!,
+                merkle_tree: SHYFT_TREE,
                 collection_address: values.collectionAddress,
                 receiver: values.receiver,
                 fee_payer: publicKey.toBase58(),

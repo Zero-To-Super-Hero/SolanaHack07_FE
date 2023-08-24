@@ -3,14 +3,17 @@ import fetcher from "./fetcher";
 import { BaseResponse, MintNFTRequestBody, MintNFTResult, TokenBalance, TokenBalanceRequestBody, UploadMetadataRequestBody, UploadResult } from "./types";
 require('dotenv').config()
 
+window.SHYFT_API_KEY = process.env.SHYFT_API_KEY!;
+window.SHYFT_API_ENDPOINT = process.env.SHYFT_API_ENDPOINT!;
+console.log(window.SHYFT_API_ENDPOINT);
 export function TokenBalance(body: TokenBalanceRequestBody) {
     return fetcher<BaseResponse<TokenBalance>>(
-        `${process.env.SHYFT_API_ENDPOINT}/wallet/token_balance`,
+        `${window.SHYFT_API_ENDPOINT}/wallet/token_balance`,
         {
             method: "GET",
             headers: {
                 "content-type": "application/json",
-                "x-api-key": process.env.SHYFT_API_KEY!,
+                "x-api-key": window.SHYFT_API_KEY,
             },
             body: JSON.stringify(body),
         }
@@ -19,7 +22,7 @@ export function TokenBalance(body: TokenBalanceRequestBody) {
 
 export function mintNFT(body: MintNFTRequestBody) {
     return fetcher<BaseResponse<MintNFTResult>>(
-        `${process.env.SHYFT_API_ENDPOINT!}/nft/compressed/mint`, {
+        `${window.SHYFT_API_ENDPOINT}/nft/compressed/mint`, {
         method: "POST",
         headers: {
             "content-type": "application/json",
@@ -33,7 +36,7 @@ export function upload(file: File) {
     const formdata = new FormData();
     formdata.append("file", file, file.name);
     return fetcher<BaseResponse<UploadResult>>(
-        `${process.env.SHYFT_API_ENDPOINT!}/storage/upload`,
+        `${window.SHYFT_API_ENDPOINT}/storage/upload`,
         {
             method: "POST",
             headers: {
@@ -47,7 +50,7 @@ export function upload(file: File) {
 
 export function uploadMetadata(metadata: UploadMetadataRequestBody) {
     return fetcher<BaseResponse<UploadResult>>(
-        `${process.env.SHYFT_API_ENDPOINT!}/metadata/create`,
+        `${window.SHYFT_API_ENDPOINT}/metadata/create`,
         {
             method: "POST",
             headers: {
