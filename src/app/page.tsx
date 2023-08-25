@@ -10,7 +10,7 @@ import { Search } from '@/components/search-bar';
 
 import Link from 'next/link';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Network, Transaction } from '@/shared/types';
+import { Network, Transaction, hi } from '@/shared/types';
 import { useToast } from '@/components/ui/use-toast';
 import { readAllNFTsFromMerkleTree } from '@/shared/shyft';
 import ConnectWalletButton from '@/components/wallet/connect-wallet-button';
@@ -24,32 +24,30 @@ export default function Home() {
   const { toast } = useToast()
 
   useEffect(() => {
-    if (publicKey && network) {
-      setLoading(true)
-      readAllNFTsFromMerkleTree(publicKey.toBase58(), network)
-        .then((response) => {
-          if (response.success) {
-            console.log(response.result)
-            setTransactions(response.result)
-          } else {
-            toast({
-              variant: "destructive",
-              title: "Error",
-              description: response.message ?? "Unknown error",
-            })
-          }
-        })
-        .catch((error: any) => {
+    setLoading(true)
+    readAllNFTsFromMerkleTree(hi.SHYFT_TREE, network)
+      .then((response) => {
+        if (response.success) {
+          setTransactions(response.result.filter(p => p.type !== "COMPRESSED_NFT_BURN" || "COMPRESSED_NFT_BURN"))
+        } else {
           toast({
             variant: "destructive",
             title: "Error",
-            description: error?.message ?? "Unknown error",
+            description: response.message ?? "Unknown error",
           })
+        }
+      })
+      .catch((error: any) => {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: error?.message ?? "Unknown error",
         })
-        .finally(() => {
-          setLoading(false)
-        })
-    }
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+
   }, [publicKey, network, toast])
 
 
@@ -128,7 +126,7 @@ export default function Home() {
             ) : (
               <>
                 {loading ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                  <div className="m-auto">
                     <SpinnerInfinity size={200} enabled={true} />
                   </div>
                 ) : (
@@ -137,12 +135,12 @@ export default function Home() {
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                         {
                           transactions.map((transaction, index) => (
-                            transaction.type === "COMPRESSED_NFT_BURN" || "COMPRESSED_NFT_BURN" ? "" :
-                              <div key={index} className='lg:col-span-3 md:col-span-6'>
-                                <Link href={`/event-detail/${transaction.actions[0].info.nft_address}`}>
-                                  {/* <EventCardItem nftEvent={nftE} /> */}
-                                </Link>
-                              </div>
+                            <div key={index} className='lg:col-span-3 md:col-span-6'>
+                              <Link href={`/event-detail/${transaction.actions[0].info.nft_address}`}>
+                                {/* <EventCardItem nftEvent={nftE} /> */}
+                                <p>{transaction.actions[0].info.nft_metadata?.uri}</p>
+                              </Link>
+                            </div>
                           ))
                         }
                       </div>
