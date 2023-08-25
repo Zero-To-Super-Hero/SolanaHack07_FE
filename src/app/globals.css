@@ -64,15 +64,19 @@
 
 .wallet-adapter-button {
   color: var(--background);
+  line-height: 1.5rem;
+  padding: 0 5px;
+  background-color: #16a34a;
+
 }
 
 .wallet-adapter-button:not([disabled]):hover {
   background-color: var(--card);
 }
 
-.wallet-adapter-button:not([disabled]):focus-visible {
+/* .wallet-adapter-button:not([disabled]):focus-visible {
   outline-color: var(--border);
-}
+} */
 
 .wallet-adapter-modal-wrapper {
   background: #16a34a;
