@@ -73,6 +73,7 @@ export type Creator = {
     verified: boolean;
 }
 
+
 export type File = {
     uri: string;
     type: string;
@@ -156,89 +157,74 @@ export type UploadMetadataRequestBody = {
 export type Transaction = {
     timestamp:  Date;
     fee:        number;
-    fee_payer:  string;
-    signers:    string[];
+    fee_payer:  FeePayer;
+    signers:    FeePayer[];
     signatures: string[];
     protocol:   Protocol;
-    type:       string;
-    status:     string;
+    type:       Type;
+    status:     Status;
     actions:    Action[];
-    raw:        Raw;
 }
 
 export type Action = {
     info:            Info;
     source_protocol: Protocol;
-    type:            string;
+    type:            Type;
 }
 
 export type Info = {
-    tree_authority:   string;
-    merkle_tree:      string;
-    owner:            string;
+    tree_authority:   TreeAuthority;
+    merkle_tree:      MerkleTree;
+    owner:            FeePayer;
     nft_address:      string;
-    update_authority: string;
+    update_authority: FeePayer;
+    payer?:           FeePayer;
+    nft_metadata?:    NftMetadata;
 }
+
+export type MerkleTree = "Fn1pzcXiBdPUoM1a9KDyiDS7uU2Mburh1AyiAPRG9CQ1";
+
+export type NftMetadata = {
+    name:                 string;
+    symbol:               string;
+    uri:                  string;
+    sellerFeeBasisPoints: number;
+    primarySaleHappened:  boolean;
+    isMutable:            boolean;
+    editionNonce:         number;
+    tokenStandard:        TokenStandard;
+    collection:           null;
+    uses:                 null;
+    tokenProgramVersion:  TokenProgramVersion;
+    creators:             Creator[];
+}
+
+
+
+export type FeePayer = "CtAzDwc4wTUApLdhjMYX4dWPbzLa9uA5JWLxvhuzZ6k4";
+
+export type TokenProgramVersion = {
+    original: Original;
+}
+
+export type Original = {
+}
+
+export type TokenStandard = {
+    nonFungible: Original;
+}
+
+export type TreeAuthority = "BWgmRd2uAzapB2SpBsjKZGn2nyV1RkcVoQKA7evCh3y8";
 
 export type Protocol = {
-    address: string;
-    name:    string;
+    address: Address;
+    name:    Name;
 }
 
-export type Raw = {
-    blockTime:   number;
-    meta:        Meta;
-    slot:        number;
-    transaction: TransactionClass;
-    version:     string;
-}
+export type Address = "BGUMAp9Gq7iTEuizy4pqaxsTyUCBK68MDfK752saRPUY";
 
-export type Meta = {
-    computeUnitsConsumed: number;
-    err:                  null;
-    fee:                  number;
-    innerInstructions:    InnerInstruction[];
-    logMessages:          string[];
-    postBalances:         number[];
-    postTokenBalances:    any[];
-    preBalances:          number[];
-    preTokenBalances:     any[];
-    rewards:              any[];
-    status:               Status;
-}
+export type Name = "BUBBLEGUM";
 
-export type InnerInstruction = {
-    index:        number;
-    instructions: Instruction[];
-}
+export type Type = "COMPRESSED_NFT_BURN" | "COMPRESSED_NFT_MINT";
 
-export type Instruction = {
-    accounts:    string[];
-    data:        string;
-    programId:   string;
-    stackHeight: number | null;
-}
-
-export type Status = {
-    Ok: null;
-}
-
-export type TransactionClass = {
-    message:    Message;
-    signatures: string[];
-}
-
-export type Message = {
-    accountKeys:     AccountKey[];
-    instructions:    Instruction[];
-    recentBlockhash: string;
-}
-
-export type AccountKey = {
-    pubkey:   string;
-    signer:   boolean;
-    source:   Source;
-    writable: boolean;
-}
-
-export type Source = "transaction";
+export type Status = "Success";

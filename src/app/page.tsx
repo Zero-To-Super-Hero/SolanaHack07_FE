@@ -13,13 +13,14 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { Network, Transaction } from '@/shared/types';
 import { useToast } from '@/components/ui/use-toast';
 import { readAllNFTsFromMerkleTree } from '@/shared/shyft';
+import ConnectWalletButton from '@/components/wallet/connect-wallet-button';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 export default function Home() {
 
   const { connected, publicKey } = useWallet()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [network, setNetwork] = useState<Network>("devnet")
-  const [transaction, setTransaction] = useState<Transaction[]>([])
+  const [transactions, setTransactions] = useState<Transaction[]>([])
   const { toast } = useToast()
 
   useEffect(() => {
@@ -28,10 +29,9 @@ export default function Home() {
       readAllNFTsFromMerkleTree(publicKey.toBase58(), network)
         .then((response) => {
           if (response.success) {
-            setTransaction(response.result.transactions);
+            console.log(response.result)
+            setTransactions(response.result)
           } else {
-
-
             toast({
               variant: "destructive",
               title: "Error",
@@ -120,18 +120,38 @@ export default function Home() {
           <p className='text-4xl text-primary font-extrabold m-10 uppercase'>List of event</p>
         </div>
         <div className='my-10'>
-          {/* <div className='grid grid-cols-1 md:grid-cols-12 items-center gap-5'>
-            {
-              Events.map((nftE, index) => (
-                <div key={index} className='lg:col-span-3 md:col-span-6'>
-                  <Link href={`/event-detail/${nftE.TokenAddress}`}>
-                    <EventCardItem nftEvent={nftE} />
-                  </Link>
-                </div>
-              ))
-            }
-
-          </div> */}
+          <div className='grid grid-cols-1 md:grid-cols-12 items-center gap-5'>
+            {!connected || !publicKey ? (
+              <div className="py-10 flex items-center justify-center">
+                <ConnectWalletButton>Connect wallet</ConnectWalletButton>
+              </div>
+            ) : (
+              <>
+                {loading ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    <SpinnerInfinity size={200} enabled={true} />
+                  </div>
+                ) : (
+                  <>
+                    {(
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        {
+                          transactions.map((transaction, index) => (
+                            transaction.type === "COMPRESSED_NFT_BURN" || "COMPRESSED_NFT_BURN" ? "" :
+                              <div key={index} className='lg:col-span-3 md:col-span-6'>
+                                <Link href={`/event-detail/${transaction.actions[0].info.nft_address}`}>
+                                  {/* <EventCardItem nftEvent={nftE} /> */}
+                                </Link>
+                              </div>
+                          ))
+                        }
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

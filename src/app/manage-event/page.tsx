@@ -8,11 +8,14 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Search } from '@/components/search-bar';
 import { EventFilterSelect } from '@/components/event-filter-select';
+import ConnectWalletButton from "@/components/wallet/connect-wallet-button"
+import { Button } from "@/components/ui/button"
+import { SpinnerInfinity } from "spinners-react"
 
 export default function Page() {
 
   const { connected, publicKey } = useWallet()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [network, setNetwork] = useState<Network>("devnet")
   const [nfts, setNFTs] = useState<Nft[]>([])
   const { toast } = useToast()
@@ -64,16 +67,44 @@ export default function Page() {
           </div>
           <div className='my-10'>
             <div className='grid grid-cols-12 items-center gap-5'>
-              {
-                nfts.map((nftE, index) => (
-                  <div key={index} className='lg:col-span-4 md:col-span-6 col-span-12'>
-                    <Link href={`/event-detail/${nftE.mint}`}>
-                      <EventCardItem nftEvent={nftE} />
-                    </Link>
-                  </div>
-                ))
-              }
-
+              {!connected || !publicKey ? (
+                <div className="py-10 flex items-center justify-center">
+                  <ConnectWalletButton>Connect wallet</ConnectWalletButton>
+                </div>
+              ) : (
+                <>
+                  {loading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                      <SpinnerInfinity size={200} enabled={true} />
+                    </div>
+                  ) : (
+                    <>
+                      {nfts.length === 0 ? (
+                        <div className="py-10  flex flex-col items-center justify-center gap-5">
+                          <p className="font-semibold text-primary text-xl">
+                            No Event
+                          </p>
+                          <Link href="/create-event">
+                            <Button>Create one</Button>
+                          </Link>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                          {
+                            nfts.map((nftE, index) => (
+                              <div key={index} className='lg:col-span-4 md:col-span-6 col-span-12'>
+                                <Link href={`/event-detail/${nftE.mint}`}>
+                                  <EventCardItem nftEvent={nftE} />
+                                </Link>
+                              </div>
+                            ))
+                          }
+                        </div>
+                      )}
+                    </>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

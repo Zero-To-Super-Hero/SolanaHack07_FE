@@ -99,7 +99,7 @@ export function readNFT(nftAddress: string, network: Network) {
 }
 
 export function readAllNFTsFromMerkleTree(account: string, network: Network) {
-    return fetcher<BaseResponse<{transactions: Transaction[]}>>(
+    return fetcher<BaseResponse<Transaction[]>>(
         `${hi.SHYFT_API_ENDPOINT}/transaction/history?network=${network}&account=${account}`,
         {
             method: "GET",
