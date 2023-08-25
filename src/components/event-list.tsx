@@ -65,13 +65,13 @@ export const EventList = () => {
         </div>
         <div className='my-10'>
             {!connected || !publicKey ? (
-                <div className="m-auto">
+                <div className="w-full flex justify-center">
                     <ConnectWalletButton>Connect wallet</ConnectWalletButton>
                 </div>
             ) : (
                 <>
                     {loading ? (
-                        <div className="m-auto">
+                        <div className="w-full flex justify-center">
                             <SpinnerInfinity size={200} enabled={true} />
                         </div>
                     ) : (

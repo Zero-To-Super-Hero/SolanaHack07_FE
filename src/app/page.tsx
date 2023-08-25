@@ -8,7 +8,6 @@ import { EventList } from '@/components/event-list';
 // import { EventCardItem } from '@/components/event;
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 export default function Home() {
-
   return (
     <div className='container'>
       <div id='hero-section'>
