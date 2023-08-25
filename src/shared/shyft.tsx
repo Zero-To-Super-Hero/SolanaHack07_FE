@@ -1,23 +1,34 @@
 
 import fetcher from "./fetcher";
-import { BaseResponse, MintNFTRequestBody, MintNFTResult, TokenBalance, TokenBalanceRequestBody, UploadMetadataRequestBody, UploadResult } from "./types";
+import {
+    BaseResponse,
+    MintNFTRequestBody,
+    MintNFTResult,
+    Network,
+    Nft,
+    // TokenBalance,
+    TokenBalanceRequestBody,
+    Transaction,
+    UploadMetadataRequestBody,
+    UploadResult
+} from "./types";
 import { hi } from "./types";
 
-export function TokenBalance(body: TokenBalanceRequestBody) {
-    return fetcher<BaseResponse<TokenBalance>>(
-        `${hi.SHYFT_API_ENDPOINT}/wallet/token_balance`,
-        {
-            method: "GET",
-            headers: {
-                "content-type": "application/json",
-                "x-api-key": hi.SHYFT_API_KEY,
-                // Accept: "*/*",
-                // "Access-Control-Allow-Origin": "*"
-            },
-            body: JSON.stringify(body),
-        }
-    );
-}
+// export function TokenBalance(body: TokenBalanceRequestBody) {
+//     return fetcher<BaseResponse<TokenBalance>>(
+//         `${hi.SHYFT_API_ENDPOINT}/wallet/token_balance`,
+//         {
+//             method: "GET",
+//             headers: {
+//                 "content-type": "application/json",
+//                 "x-api-key": hi.SHYFT_API_KEY,
+//                 // Accept: "*/*",
+//                 // "Access-Control-Allow-Origin": "*"
+//             },
+//             body: JSON.stringify(body),
+//         }
+//     );
+// }
 
 export function mintNFT(body: MintNFTRequestBody) {
     return fetcher<BaseResponse<MintNFTResult>>(
@@ -26,8 +37,6 @@ export function mintNFT(body: MintNFTRequestBody) {
         headers: {
             "content-type": "application/json",
             "x-api-key": hi.SHYFT_API_KEY,
-            // Accept: "*/*",
-            // "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify(body),
     })
@@ -43,8 +52,6 @@ export function upload(file: File) {
             headers: {
                 // "content-type": "application/json",
                 "x-api-key": hi.SHYFT_API_KEY,
-                // "Accept": "*/*",
-                // "Access-Control-Allow-Origin": "*"
             },
             body: formdata,
         }
@@ -59,10 +66,47 @@ export function uploadMetadata(metadata: UploadMetadataRequestBody) {
             headers: {
                 "content-type": "application/json",
                 "x-api-key": hi.SHYFT_API_KEY,
-                // "Accept": "*/*",
-                // "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify(metadata),
         }
     );
+}
+
+export function readAllNFTs(wallet: string, network: Network) {
+    return fetcher<BaseResponse<{ nfts: Nft[] }>>(
+        `${hi.SHYFT_API_ENDPOINT}/nft/compressed/read_all?network=${network}&wallet_address=${wallet}`,
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "x-api-key": hi.SHYFT_API_KEY,
+            },
+        }
+    )
+}
+
+export function readNFT(nftAddress: string, network: Network) {
+    return fetcher<BaseResponse<Nft>>(
+        `${hi.SHYFT_API_ENDPOINT}/nft/compressed/read?network=${network}&nft_address=${nftAddress}`,
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "x-api-key": hi.SHYFT_API_KEY,
+            },
+        }
+    )
+}
+
+export function readAllNFTsFromMerkleTree(account: string, network: Network) {
+    return fetcher<BaseResponse<{transactions: Transaction[]}>>(
+        `${hi.SHYFT_API_ENDPOINT}/transaction/history?network=${network}&account=${account}`,
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "x-api-key": hi.SHYFT_API_KEY,
+            },
+        }
+    )
 }
