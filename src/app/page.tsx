@@ -1,56 +1,13 @@
 "use client"
 import { SpinnerInfinity } from 'spinners-react';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import Typical from "react-typical";
 import { Separator } from "@/components/ui/separator"
 import { Button } from '@/components/ui/button';
-import { EventFilterSelect } from '@/components/event-filter-select';
-import { Search } from '@/components/search-bar';
+import { EventList } from '@/components/event-list';
 // import { EventCardItem } from '@/components/event;
-
-import Link from 'next/link';
-import { useWallet } from '@solana/wallet-adapter-react';
-import { Network, Transaction, hi } from '@/shared/types';
-import { useToast } from '@/components/ui/use-toast';
-import { readAllNFTsFromMerkleTree } from '@/shared/shyft';
-import ConnectWalletButton from '@/components/wallet/connect-wallet-button';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 export default function Home() {
-
-  const { connected, publicKey } = useWallet()
-  const [loading, setLoading] = useState(true)
-  const [network, setNetwork] = useState<Network>("devnet")
-  const [transactions, setTransactions] = useState<Transaction[]>([])
-  const { toast } = useToast()
-
-  useEffect(() => {
-    setLoading(true)
-    readAllNFTsFromMerkleTree(hi.SHYFT_TREE, network)
-      .then((response) => {
-        if (response.success) {
-          setTransactions(response.result.filter(p => p.type !== "COMPRESSED_NFT_BURN" || "COMPRESSED_NFT_BURN"))
-        } else {
-          toast({
-            variant: "destructive",
-            title: "Error",
-            description: response.message ?? "Unknown error",
-          })
-        }
-      })
-      .catch((error: any) => {
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: error?.message ?? "Unknown error",
-        })
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-
-  }, [publicKey, network, toast])
-
-
 
   return (
     <div className='container'>
@@ -83,9 +40,9 @@ export default function Home() {
             <div className='text-muted-foreground font-mono h-10'>
               <Typical
                 steps={[
-                  "Join us to explore the new world of NFT tickets.", 1300,
-                  "You just need to register a free account and start creating your event.", 1300,
-                  "The number of NFT tickets is limited!", 1300
+                  "Join us to explore the new world of NFT tickets.", 1500,
+                  "You just need to register a free account and start creating your event.", 1500,
+                  "The number of NFT tickets is limited!", 1500
                 ]}
                 loop={Infinity}
                 wrapper="p"
@@ -105,52 +62,7 @@ export default function Home() {
       <Separator orientation='horizontal' className='my-5' />
 
       <div id='event-list-section' className='my-10'>
-        <div className='grid grid-cols-1 lg:grid-cols-12 justify-between items-center gap-5'>
-          <div className='col-span-1 lg:col-span-4'>
-            <EventFilterSelect />
-          </div>
-          <div className='lg:col-span-4'></div>
-          <div className='col-span-1 lg:col-span-4'>
-            <Search />
-          </div>
-        </div>
-        <div className='text-center'>
-          <p className='text-4xl text-primary font-extrabold m-10 uppercase'>List of event</p>
-        </div>
-        <div className='my-10'>
-          <div className='grid grid-cols-1 md:grid-cols-12 items-center gap-5'>
-            {!connected || !publicKey ? (
-              <div className="py-10 flex items-center justify-center">
-                <ConnectWalletButton>Connect wallet</ConnectWalletButton>
-              </div>
-            ) : (
-              <>
-                {loading ? (
-                  <div className="m-auto">
-                    <SpinnerInfinity size={200} enabled={true} />
-                  </div>
-                ) : (
-                  <>
-                    {(
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                        {
-                          transactions.map((transaction, index) => (
-                            <div key={index} className='lg:col-span-3 md:col-span-6'>
-                              <Link href={`/event-detail/${transaction.actions[0].info.nft_address}`}>
-                                {/* <EventCardItem nftEvent={nftE} /> */}
-                                <p>{transaction.actions[0].info.nft_metadata?.uri}</p>
-                              </Link>
-                            </div>
-                          ))
-                        }
-                      </div>
-                    )}
-                  </>
-                )}
-              </>
-            )}
-          </div>
-        </div>
+        <EventList />
       </div>
     </div>
   )

@@ -51,6 +51,7 @@ export type Nft = {
     is_loaded_metadata: boolean;
     is_compressed: boolean;
     merkle_tree: string;
+    image:                   string;
 }
 
 export type Attributes = {
@@ -228,3 +229,14 @@ export type Name = "BUBBLEGUM";
 export type Type = "COMPRESSED_NFT_BURN" | "COMPRESSED_NFT_MINT";
 
 export type Status = "Success";
+
+export type Attribute = {
+    trait_type: string;
+    value:      string;
+}
+
+export type Properties = {
+    creators: Creator[];
+    files:    File[];
+}
+

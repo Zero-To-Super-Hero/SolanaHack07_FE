@@ -6,8 +6,7 @@ import {
     MintNFTResult,
     Network,
     Nft,
-    // TokenBalance,
-    TokenBalanceRequestBody,
+    NftMetadata,
     Transaction,
     UploadMetadataRequestBody,
     UploadResult
@@ -107,6 +106,19 @@ export function readAllNFTsFromMerkleTree(account: string, network: Network) {
                 "content-type": "application/json",
                 "x-api-key": hi.SHYFT_API_KEY,
             },
+        }
+    )
+}
+
+export function readMetaUri(uri: string) {
+    return fetcher<Nft>(
+        `${uri}`,
+        {
+            method: "GET",
+            // headers: {
+            //     "content-type": "application/json",
+            //     "x-api-key": hi.SHYFT_API_KEY,
+            // },
         }
     )
 }

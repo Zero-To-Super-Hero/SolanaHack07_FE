@@ -56,7 +56,7 @@ export function EventCardItem({ nftEvent }: { nftEvent: Nft }) {
                         </div>
                         <div className="flex items-center justify-between space-x-2">
                             <Image src={solanaSvg} height={16} width={16} alt="solanaSVG" />
-                            <p>{solanaFormat(Number(nftEvent.attributes.Price))}</p>
+                            <p>{nftEvent.attributes.Price}</p>
                         </div>
                     </div>
                     <div className="flex items-center space-x-2 justify-between">

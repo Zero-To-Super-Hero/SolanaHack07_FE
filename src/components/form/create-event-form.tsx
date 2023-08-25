@@ -98,7 +98,7 @@ export const CreateEventForm = () => {
     useEffect(() => {
         append({ trait_type: "Location", value: "" });
         append({ trait_type: "Time", value: "" });
-        append({ trait_type: "Price", value: "" + "$" });
+        append({ trait_type: "Price", value: ""  });
     }, [append]);
 
     const handleAppendField = () => {
