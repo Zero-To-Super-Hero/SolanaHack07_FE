@@ -24,6 +24,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { hi } from "@/shared/types";
+import Link from "next/link"
 
 const formSchema = z.object({
     image: z.any().refine((file) => !!file, "Image is required."),
@@ -97,6 +98,7 @@ export const CreateEventForm = () => {
     useEffect(() => {
         append({ trait_type: "Location", value: "" });
         append({ trait_type: "Time", value: "" });
+        append({ trait_type: "Price", value: "" + "$" });
     }, [append]);
 
     const handleAppendField = () => {

@@ -15,61 +15,95 @@ export const hi: hitype = {
 export const Networks = ["mainnet-beta", "devnet", "testnet"] as const
 export type Network = "mainnet-beta" | "devnet" | "testnet"
 
-export type NftEvent = {
-    TokenAddress: string
-    Name: string
-    Description?: string
-    Date: Date | string
-    Image: string
-    Price: number
-    Location?: string
+// export type NftEvent = {
+//     TokenAddress: string
+//     Name: string
+//     Description?: string
+//     Date: Date | string
+//     Image: string
+//     Price: number
+//     Location?: string
+// }
+
+//read
+export type Nft = {
+    name: string;
+    symbol: string;
+    royalty: number;
+    image_uri: string;
+    cached_image_uri: string;
+    animation_url: string;
+    cached_animation_url: string;
+    metadata_uri: string;
+    description: string;
+    mint: string;
+    owner: string;
+    update_authority: string;
+    creators: Creator[];
+    collection: Collection;
+    attributes: Attributes;
+    attributes_array: AttributesArray[];
+    files: File[];
+    external_url: string;
+    primary_sale_happened: boolean;
+    is_mutable: boolean;
+    token_standard: string;
+    is_loaded_metadata: boolean;
+    is_compressed: boolean;
+    merkle_tree: string;
 }
 
-export const Events: NftEvent[] = [
-    {
-        TokenAddress: "1",
-        Name: "Happy Bee",
-        Description: "FPT Polytechnic concert in HCM city 2023",
-        Image: "https://picsum.photos/600/600?random=1",
-        Date: new Date(2023, 8, 10, 6, 30, 0),
-        Location: "QTSC",
-        Price: 1,
-    },
-    {
-        TokenAddress: "2",
-        Name: "Happy Lion",
-        Image: "https://picsum.photos/600/600?random=2",
-        Date: new Date(2023, 8, 10, 6, 10, 0),
-        Location: "Some Where",
-        Price: 2.2,
-    },
-]
+export type Attributes = {
+    Location?: string;
+    Time?: string;
+    Price?: string;
+}
+
+export type AttributesArray = {
+    trait_type: string;
+    value: string;
+}
+
+export type Collection = {
+}
+
+export type Creator = {
+    address: string;
+    share: number;
+    verified: boolean;
+}
+
+export type File = {
+    uri: string;
+    type: string;
+}
+//
 
 export type BaseResponse<T> = {
     success: boolean
     message: string
     result: T
 }
-
+//
 export type TokenBalanceRequestBody = {
     network: string
     wallet: string,
     token_address: string
 }
 
-export type TokenBalance = {
-    address: string;
-    balance: number;
-    associated_account: string;
-    info: Info;
-    isFrozen: boolean;
-}
+// export type TokenBalance = {
+//     address: string;
+//     balance: number;
+//     associated_account: string;
+//     info: Info;
+//     isFrozen: boolean;
+// }
 
-export type Info = {
-    name: string;
-    symbol: string;
-    image: string;
-}
+// export type Info = {
+//     name: string;
+//     symbol: string;
+//     image: string;
+// }
 
 //mint nft
 export type MintNFTRequestBody = {
@@ -116,3 +150,95 @@ export type UploadMetadataRequestBody = {
         type: string
     }>
 }
+
+/////
+
+export type Transaction = {
+    timestamp:  Date;
+    fee:        number;
+    fee_payer:  string;
+    signers:    string[];
+    signatures: string[];
+    protocol:   Protocol;
+    type:       string;
+    status:     string;
+    actions:    Action[];
+    raw:        Raw;
+}
+
+export type Action = {
+    info:            Info;
+    source_protocol: Protocol;
+    type:            string;
+}
+
+export type Info = {
+    tree_authority:   string;
+    merkle_tree:      string;
+    owner:            string;
+    nft_address:      string;
+    update_authority: string;
+}
+
+export type Protocol = {
+    address: string;
+    name:    string;
+}
+
+export type Raw = {
+    blockTime:   number;
+    meta:        Meta;
+    slot:        number;
+    transaction: TransactionClass;
+    version:     string;
+}
+
+export type Meta = {
+    computeUnitsConsumed: number;
+    err:                  null;
+    fee:                  number;
+    innerInstructions:    InnerInstruction[];
+    logMessages:          string[];
+    postBalances:         number[];
+    postTokenBalances:    any[];
+    preBalances:          number[];
+    preTokenBalances:     any[];
+    rewards:              any[];
+    status:               Status;
+}
+
+export type InnerInstruction = {
+    index:        number;
+    instructions: Instruction[];
+}
+
+export type Instruction = {
+    accounts:    string[];
+    data:        string;
+    programId:   string;
+    stackHeight: number | null;
+}
+
+export type Status = {
+    Ok: null;
+}
+
+export type TransactionClass = {
+    message:    Message;
+    signatures: string[];
+}
+
+export type Message = {
+    accountKeys:     AccountKey[];
+    instructions:    Instruction[];
+    recentBlockhash: string;
+}
+
+export type AccountKey = {
+    pubkey:   string;
+    signer:   boolean;
+    source:   Source;
+    writable: boolean;
+}
+
+export type Source = "transaction";
