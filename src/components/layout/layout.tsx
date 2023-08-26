@@ -17,7 +17,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
 
     const endpoint = useMemo(() => clusterApiUrl(network), [network])
 
-    const wallets = useMemo(() => [new PhantomWalletAdapter(), new SolflareWalletAdapter()], [network])
+    const wallets = useMemo(() => [new PhantomWalletAdapter(), new SolflareWalletAdapter()], [])
 
     return (
         <div>
