@@ -18,14 +18,14 @@ import solanaSvg from "../../public/assets/solanaLogoMark.svg"
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import Link from "next/link"
 
-const solanaFormat = (amount: number) => {
-    // define a function that takes an amount in lamports and returns a formatted string in SOL
-    const sol = amount // convert lamports to SOL
-    return sol.toLocaleString("en-US", {
-        maximumFractionDigits: 9,
-        minimumFractionDigits: 2,
-    });
-};
+// const solanaFormat = (amount: number) => {
+//     // define a function that takes an amount in lamports and returns a formatted string in SOL
+//     const sol = amount // convert lamports to SOL
+//     return sol.toLocaleString("en-US", {
+//         maximumFractionDigits: 9,
+//         minimumFractionDigits: 2,
+//     });
+// };
 
 export function EventCardItem({ nftEvent }: { nftEvent: Nft }) {
     // const datetim = nftEvent.attributes.time ? new Date(nftEvent.attributes.time) : nftEvent.attributes.time;
