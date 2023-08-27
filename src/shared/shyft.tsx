@@ -139,7 +139,7 @@ export function readCompressNFT(nftAddress: string, network: Network) {
 
 export function readNFT(nftAddress: string, network: Network) {
     return fetcher<BaseResponse<Nft>>(
-        `${hi.SHYFT_API_ENDPOINT}/nft/read?network=${network}&nft_address=${nftAddress}`,
+        `${hi.SHYFT_API_ENDPOINT}/nft/read?network=${network}&token_address=${nftAddress}`,
         {
             method: "GET",
             headers: {
