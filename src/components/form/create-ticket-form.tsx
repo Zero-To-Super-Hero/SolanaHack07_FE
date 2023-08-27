@@ -295,7 +295,7 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
                         />
 
                         {/* collection address */}
-                        <FormField
+                        {/* <FormField
                             control={form.control}
                             name="collectionAddress"
                             render={({ field, fieldState }) => (
@@ -310,7 +310,7 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
                                     </FormDescription>
                                 </FormItem>
                             )}
-                        />
+                        /> */}
 
                         {/* attributes */}
 
