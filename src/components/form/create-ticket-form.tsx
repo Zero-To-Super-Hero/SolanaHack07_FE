@@ -11,7 +11,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input"
 import { SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Networks } from "@/shared/types"
-import { mintNFT, upload, uploadMetadata } from "../../shared/shyft"
+import { mintNFT, mintNFTfromMeta, upload, uploadMetadata } from "../../shared/shyft"
 import ConnectWalletButton from "@/components/wallet/connect-wallet-button"
 import { NetworkSelect } from "@/components/wallet/network-select"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
@@ -69,7 +69,7 @@ const formSchema = z.object({
     network: z.enum(Networks),
 })
 
-export const CreateEventForm = () => {
+export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => {
     const { toast } = useToast()
     const { connected, publicKey, sendTransaction } = useWallet()
     const { connection } = useConnection()
@@ -98,7 +98,7 @@ export const CreateEventForm = () => {
     useEffect(() => {
         append({ trait_type: "Location", value: "" });
         append({ trait_type: "Time", value: "" });
-        append({ trait_type: "Price", value: ""  });
+        append({ trait_type: "Price", value: "" });
     }, [append]);
 
     const handleAppendField = () => {
@@ -153,12 +153,12 @@ export const CreateEventForm = () => {
                 return
             }
 
-            const response = await mintNFT({
+            const response = await mintNFTfromMeta({
                 creator_wallet: publicKey.toBase58(),
                 metadata_uri: uploadMetadataResponse.result.uri,
                 merkle_tree: hi.SHYFT_TREE,
-                collection_address: values.collectionAddress,
-                receiver: values.receiver,
+                collection_address: TokenAddress,
+                receiver: values.receiver ?? "",
                 fee_payer: publicKey.toBase58(),
                 network: values.network,
             })

@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator"
 import solanaSvg from "../../public/assets/solanaLogoMark.svg"
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import Link from "next/link"
+import { Button } from "./ui/button"
 
 // const solanaFormat = (amount: number) => {
 //     // define a function that takes an amount in lamports and returns a formatted string in SOL
@@ -48,30 +49,43 @@ export function EventCardItem({ nftEvent }: { nftEvent: Nft }) {
                 </AspectRatio>
             </CardContent>
             <CardFooter>
-                <div className="grid grid-cols-1 w-full gap-5 justify-between items-center">
-                    <div className="flex justify-between space-x-2 w-full">
-                        <div className="flex items-center space-x-2">
-                            <span><FontAwesomeIcon icon={faLocationDot} /></span>
-                            <p className="">{nftEvent.attributes.Location}</p>
+                <div >
+                    <div className="grid grid-cols-1 w-full gap-5 justify-between items-center">
+                        <div className="flex justify-between space-x-2 w-full">
+                            <div className="flex items-center space-x-2">
+                                <span><FontAwesomeIcon icon={faLocationDot} /></span>
+                                <p className="">{nftEvent.attributes.Location}</p>
+                            </div>
+                            <div className="flex items-center justify-between space-x-2">
+                                <Image src={solanaSvg} height={16} width={16} alt="solanaSVG" />
+                                <p>{nftEvent.attributes.Price}</p>
+                            </div>
                         </div>
-                        <div className="flex items-center justify-between space-x-2">
-                            <Image src={solanaSvg} height={16} width={16} alt="solanaSVG" />
-                            <p>{nftEvent.attributes.Price}</p>
+                        <div className="flex items-center space-x-2 justify-between">
+                            <span><FontAwesomeIcon icon={faCalendarCheck} size="sm" /></span>
+                            <p className="text-muted-foreground text-sm">
+                                {nftEvent.attributes.Time}
+                            </p>
+                        </div>
+                        <div className="max-h-10 overflow-scroll">
+                            {nftEvent.attributes_array.map((attribute, index) => (
+                                attribute.trait_type == "Location" || "Time" || "Price" ? "" :
+                                    <div key={index}>
+                                        <p>{attribute.trait_type}: {attribute.value}</p>
+                                    </div>
+                            ))}
                         </div>
                     </div>
-                    <div className="flex items-center space-x-2 justify-between">
-                        <span><FontAwesomeIcon icon={faCalendarCheck} size="sm" /></span>
-                        <p className="text-muted-foreground text-sm">
-                            {nftEvent.attributes.Time}
+                    <div className="flex flex-row justify-between items-center gap-5 mt-3">
+                        <Link href={`/event-detail/create-ticket/${nftEvent.mint}`} className="hover:bg-primary outline outline-1 p-2 rounded outline-primary h-full"><p className="font-semibold text-sm">
+                            🎫 Create ticket
+
                         </p>
-                    </div>
-                    <div className="max-h-10 overflow-scroll">
-                        {nftEvent.attributes_array.map((attribute, index) => (
-                            attribute.trait_type == "Location" || "Time" || "Price" ? "" :
-                                <div key={index}>
-                                    <p>{attribute.trait_type}: {attribute.value}</p>
-                                </div>
-                        ))}
+                        </Link>
+
+                        <Link href={`/event-detail/burn-ticket/${nftEvent.mint}`} className="hover:bg-red-500 rounded outline-red-500 outline outline-1 p-2  h-full"><p className="font-semibold text-sm">🔥Delete event</p>
+                        </Link>
+
                     </div>
                 </div>
             </CardFooter>

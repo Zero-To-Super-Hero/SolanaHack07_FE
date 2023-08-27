@@ -1,0 +1,129 @@
+{
+    "success": true,
+    "message": "All NFT collections",
+    "result": {
+        "collections": [
+            {
+                "address": "9V8sKhNiRnqkrfvfaRE8kyHGRKcQzvLa9KjkjUvZLMUe",
+                "name": "Happy 13",
+                "family": null,
+                "nft_count": 1,
+                "nfts": [
+                    {
+                        "name": "HP#001",
+                        "symbol": "HP",
+                        "royalty": 5,
+                        "mint": "Fx1BDRwZuPGZ7JYyv7HQ35FCf5fNu3rtDheZR5E9gQLK",
+                        "update_authority": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                        "metadata_uri": "https://nftstorage.link/ipfs/bafkreifay75naiqyb7k57y3anwgjm37ts6k4qtqlc3unkmv4ue3p23goge",
+                        "creators": [
+                            {
+                                "address": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                                "share": 100,
+                                "verified": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "address": null,
+                "name": "unknown",
+                "family": null,
+                "nft_count": 6,
+                "nfts": [
+                    {
+                        "name": "Happy 13",
+                        "symbol": "HP13",
+                        "royalty": 5,
+                        "mint": "9V8sKhNiRnqkrfvfaRE8kyHGRKcQzvLa9KjkjUvZLMUe",
+                        "update_authority": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                        "metadata_uri": "https://nftstorage.link/ipfs/bafkreifzt76gppsy7ue2ioo7pkg46mkhmozdkr45mrscbamiu723cea4ke",
+                        "creators": [
+                            {
+                                "address": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                                "share": 100,
+                                "verified": true
+                            }
+                        ]
+                    },
+                    {
+                        "name": "fpoly",
+                        "symbol": "FYE",
+                        "royalty": 5,
+                        "mint": "B4GmygJk1jHWCE9Xqn7nuabpeYRDEnFqb3iYSnRm3QPE",
+                        "update_authority": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                        "metadata_uri": "https://nftstorage.link/ipfs/bafkreifs2tq5lvhz25si2i3va5mq7r7egr7hp6mqf6sp5o3qa3opvvlsxy",
+                        "creators": [
+                            {
+                                "address": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                                "share": 100,
+                                "verified": true
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Happy 13",
+                        "symbol": "HP13",
+                        "royalty": 5,
+                        "mint": "7HjBPKSFvWWDhxHEb12X5eMbGUURKLTPrfg7qpd79fSv",
+                        "update_authority": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                        "metadata_uri": "https://nftstorage.link/ipfs/bafkreifzt76gppsy7ue2ioo7pkg46mkhmozdkr45mrscbamiu723cea4ke",
+                        "creators": [
+                            {
+                                "address": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                                "share": 100,
+                                "verified": true
+                            }
+                        ]
+                    },
+                    {
+                        "name": "duc danh",
+                        "symbol": "DD",
+                        "royalty": 5,
+                        "mint": "CWnBNF1J1J5cXnGKB2jUaewNadmLRDYZMrZVSNE1vSve",
+                        "update_authority": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                        "metadata_uri": "https://nftstorage.link/ipfs/bafkreid6j3uykrb6kwfuu7m33uwgm3hmsdnzn5fwpkoqvklpi5juhog2ea",
+                        "creators": [
+                            {
+                                "address": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                                "share": 100,
+                                "verified": true
+                            }
+                        ]
+                    },
+                    {
+                        "name": "fpoly002",
+                        "symbol": "FY",
+                        "royalty": 5,
+                        "mint": "D6dfTAJVnafMZvz7bgddhbwqvYaGV4ZsWesh7XuVgZvP",
+                        "update_authority": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                        "metadata_uri": "https://nftstorage.link/ipfs/bafkreieply74cpw4g7rmljuecqzsj5gzljuhroxodt5r6efpyav5qpexka",
+                        "creators": [
+                            {
+                                "address": "AL25xTfWJdAAQ3T7KSLEqNQS2ik5LTL9jyRGV1S72pwm",
+                                "share": 100,
+                                "verified": true
+                            }
+                        ]
+                    },
+                    {
+                        "name": ".Net Universe Fpoly",
+                        "symbol": "NET",
+                        "royalty": 5,
+                        "mint": "5NjM36UjdBjrmQfTbPiQQpJPyXBZ4A7ay3kY6HoLxycg",
+                        "update_authority": "5ShntPmrfknY93aGvu8XPrmauM9ZD6JwybczJ6h39sqA",
+                        "metadata_uri": "https://nftstorage.link/ipfs/bafkreift2u5uzneov6dusrf3asrgd6jkehb53ascisbt5atxfxjx337z4a",
+                        "creators": [
+                            {
+                                "address": "5ShntPmrfknY93aGvu8XPrmauM9ZD6JwybczJ6h39sqA",
+                                "share": 100,
+                                "verified": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

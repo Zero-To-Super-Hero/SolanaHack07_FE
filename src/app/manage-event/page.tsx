@@ -91,10 +91,12 @@ export default function Page() {
                       <div className="grid grid-cols-12 items-center gap-5">
                         {
                           nfts.map((nftE, index) => (
-                            <div key={index} className='lg:col-span-4 md:col-span-6 col-span-12'>
-                              <Link href={`/event-detail/${nftE.mint}`}>
+                            <div key={index} className='lg:col-span-3 md:col-span-6 col-span-12'>
+                              <div >
                                 <EventCardItem nftEvent={nftE} />
-                              </Link>
+                                
+                              </div>
+
                             </div>
                           ))
                         }
