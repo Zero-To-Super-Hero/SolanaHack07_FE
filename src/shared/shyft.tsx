@@ -85,7 +85,7 @@ export function uploadMetadata(metadata: UploadMetadataRequestBody) {
     );
 }
 
-export function readAllNFTs(wallet: string, network: Network) {
+export function readAllCompressedNFTs(wallet: string, network: Network) {
     return fetcher<BaseResponse<{ nfts: Nft[] }>>(
         `${hi.SHYFT_API_ENDPOINT}/nft/compressed/read_all?network=${network}&wallet_address=${wallet}`,
         {
@@ -98,8 +98,21 @@ export function readAllNFTs(wallet: string, network: Network) {
     )
 }
 
+export function readAllNFTs(wallet: string, network: Network) {
+    return fetcher<BaseResponse<Nft[]>>(
+        `${hi.SHYFT_API_ENDPOINT}/nft/read_all?network=${network}&address=${wallet}`,
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "x-api-key": hi.SHYFT_API_KEY,
+            },
+        }
+    )
+}
+
 export function readCollections(wallet: string, network: Network) {
-    return fetcher<BaseResponse<{collections:Collection[]}>>(
+    return fetcher<BaseResponse<{ collections: Collection[] }>>(
         `${hi.SHYFT_API_ENDPOINT}/wallet/collections?network=${network}&wallet_address=${wallet}`,
         {
             method: "GET",
@@ -140,6 +153,19 @@ export function readNFT(nftAddress: string, network: Network) {
 export function readAllNFTsFromMerkleTree(account: string, network: Network) {
     return fetcher<BaseResponse<Transaction[]>>(
         `${hi.SHYFT_API_ENDPOINT}/transaction/history?network=${network}&account=${account}`,
+        {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "x-api-key": hi.SHYFT_API_KEY,
+            },
+        }
+    )
+}
+
+export function portfolio(account: string, network: Network) {
+    return fetcher<BaseResponse<Transaction[]>>(
+        `${hi.SHYFT_API_ENDPOINT}/?network=${network}&account=${account}`,
         {
             method: "GET",
             headers: {

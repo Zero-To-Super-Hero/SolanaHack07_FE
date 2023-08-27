@@ -27,7 +27,7 @@ export default function Page() {
         .then((response) => {
           if (response.success) {
             console.log(response.result)
-            setNFTs(response.result.nfts)
+            setNFTs(response.result)
           } else {
             toast({
               variant: "destructive",
@@ -94,7 +94,7 @@ export default function Page() {
                             <div key={index} className='lg:col-span-3 md:col-span-6 col-span-12'>
                               <div >
                                 <EventCardItem nftEvent={nftE} />
-                                
+
                               </div>
 
                             </div>

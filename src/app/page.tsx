@@ -67,7 +67,7 @@ export default function Home() {
       </div>
       <Separator orientation='horizontal' className='my-5' />
       <div id='event-list-section' className='my-10'>
-        <EventList />
+        {/* <EventList /> */}
         {/* {connected ? (
         ) : (
           <ConnectWalletButton>Connect Wallet</ConnectWalletButton>
