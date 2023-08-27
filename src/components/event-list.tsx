@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Network, Nft, NftMetadata, Transaction, hi } from '@/shared/types';
 import { useToast } from '@/components/ui/use-toast';
-import { readAllNFTsFromMerkleTree, readMetaUri, readNFT } from '@/shared/shyft';
+import {readCollections, readAllNFTsFromMerkleTree, readMetaUri, readNFT } from '@/shared/shyft';
 import ConnectWalletButton from '@/components/wallet/connect-wallet-button';
 import { NftCollectionItem } from '@/components/nft-collection-item';
 import { Suspense, useEffect, useState } from "react";
@@ -18,8 +18,6 @@ export const EventList = () => {
     const [nfts, setNfts] = useState<Nft[]>([])
 
     const { toast } = useToast()
-
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -48,6 +46,8 @@ export const EventList = () => {
         };
         fetchData();
     }, [publicKey, network, toast]);
+
+
 
     return (<>
 

@@ -9,7 +9,7 @@ export type hitype = {
 export const hi: hitype = {
     SHYFT_API_ENDPOINT: "https://api.shyft.to/sol/v1",
     SHYFT_API_KEY: "QedCXi-__1YxirlR",
-    SHYFT_TREE: "Fn1pzcXiBdPUoM1a9KDyiDS7uU2Mburh1AyiAPRG9CQ1",
+    SHYFT_TREE: "FVeRc7oAqU3bpRmtQxs3BYYhvheXwgZw1JGKKVNWDYkb",
 }
 
 export const Networks = ["mainnet-beta", "devnet", "testnet"] as const
@@ -52,6 +52,9 @@ export type Nft = {
     is_compressed: boolean;
     merkle_tree: string;
     image:                   string;
+
+
+    
 }
 
 export type Attributes = {
@@ -63,9 +66,6 @@ export type Attributes = {
 export type AttributesArray = {
     trait_type: string;
     value: string;
-}
-
-export type Collection = {
 }
 
 export type Creator = {
@@ -114,12 +114,12 @@ export type MintNFTRequestBody = {
     metadata_uri: string
     merkle_tree: string
     is_delegate_authority?: boolean
-    collection_address?: string
+    collection_address: string
     max_supply?: number
     primary_sale_happend?: boolean
     is_mutable?: boolean
-    receiver?: string
-    fee_payer?: string
+    receiver: string
+    fee_payer: string
 }
 
 export type MintNFTResult = {
@@ -240,3 +240,10 @@ export type Properties = {
     files:    File[];
 }
 
+export type Collection = {
+    address:   null | string;
+    name:      string;
+    family:    null;
+    nft_count: number;
+    nfts:      Nft[];
+}

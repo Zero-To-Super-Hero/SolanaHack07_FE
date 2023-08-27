@@ -69,7 +69,7 @@ const formSchema = z.object({
     network: z.enum(Networks),
 })
 
-export const CreateEventForm = () => {
+export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => {
     const { toast } = useToast()
     const { connected, publicKey, sendTransaction } = useWallet()
     const { connection } = useConnection()
@@ -157,20 +157,17 @@ export const CreateEventForm = () => {
                 creator_wallet: publicKey.toBase58(),
                 metadata_uri: uploadMetadataResponse.result.uri,
                 merkle_tree: hi.SHYFT_TREE,
-                collection_address: values.collectionAddress ?? "",
+                collection_address: TokenAddress,
                 receiver: values.receiver ?? "",
                 fee_payer: publicKey.toBase58(),
                 network: values.network,
-                is_delegate_authority: true,
-                is_mutable: true,
-                max_supply: 0,
-                primary_sale_happend: false,
             })
 
             if (response.success) {
                 const tx = Transaction.from(Buffer.from(response.result.encoded_transaction, "base64"))
                 const signature = await sendTransaction(tx, connection)
                 await connection.confirmTransaction(signature, "confirmed")
+
                 toast({
                     variant: "default",
                     title: "Your NFT minted successfully",

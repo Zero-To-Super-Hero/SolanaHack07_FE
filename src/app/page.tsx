@@ -5,9 +5,16 @@ import Typical from "react-typical";
 import { Separator } from "@/components/ui/separator"
 import { Button } from '@/components/ui/button';
 import { EventList } from '@/components/event-list';
+
+import { useConnection, useWallet } from "@solana/wallet-adapter-react"
+
+import ConnectWalletButton from "@/components/wallet/connect-wallet-button"
 // import { EventCardItem } from '@/components/event;
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
+
 export default function Home() {
+  const { connected, publicKey, sendTransaction } = useWallet()
+  const { connection } = useConnection()
   return (
     <div className='container'>
       <div id='hero-section'>
@@ -59,9 +66,12 @@ export default function Home() {
         </div>
       </div>
       <Separator orientation='horizontal' className='my-5' />
-
       <div id='event-list-section' className='my-10'>
-        <EventList />
+        {/* <EventList /> */}
+        {/* {connected ? (
+        ) : (
+          <ConnectWalletButton>Connect Wallet</ConnectWalletButton>
+        )} */}
       </div>
     </div>
   )
