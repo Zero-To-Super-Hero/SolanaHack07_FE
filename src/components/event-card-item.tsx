@@ -31,7 +31,7 @@ import { Button } from "./ui/button"
 export function EventCardItem({ nftEvent }: { nftEvent: Nft }) {
     // const datetim = nftEvent.attributes.time ? new Date(nftEvent.attributes.time) : nftEvent.attributes.time;
     return (
-        <Card className="w-full">
+        <Card className="">
             <CardHeader>
                 <CardTitle className=" text-primary font-semibold text-xl">{nftEvent.name}</CardTitle>
                 <CardDescription className="truncate h-5" >
@@ -50,8 +50,8 @@ export function EventCardItem({ nftEvent }: { nftEvent: Nft }) {
             </CardContent>
             <CardFooter>
                 <div >
-                    <div className="grid grid-cols-1 w-full gap-5 justify-between items-center">
-                        <div className="flex justify-between space-x-2 w-full">
+                    <div className="grid grid-cols-12 w-full gap-5 items-center justify-center">
+                        <div className="flex justify-between space-x-2 w-full col-span-12">
                             <div className="flex items-center space-x-2">
                                 <span><FontAwesomeIcon icon={faLocationDot} /></span>
                                 <p className="">{nftEvent.attributes.Location}</p>
@@ -76,7 +76,7 @@ export function EventCardItem({ nftEvent }: { nftEvent: Nft }) {
                             ))}
                         </div>
                     </div>
-                    <div className="flex flex-row justify-between items-center gap-5 mt-3">
+                    <div className="flex flex-row justify-between items-center gap-5 mt-3 w-full col-span-12">
                         <Link href={`/event-detail/create-ticket/${nftEvent.mint}`} className="hover:bg-primary outline outline-1 p-2 rounded outline-primary h-full"><p className="font-semibold text-sm">
                             🎫 Create ticket
 
