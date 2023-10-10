@@ -7,15 +7,6 @@
 ## 🚀 About My Team
 Trần Phú Đạt (Leader) Role: Full-Stack
 
-Lưu Đức Danh (Deputy Leader) Role: Full-Stack
-
-Lâm Sâm Chấn (Member) Role: Full-Stack
-
-Đỗ Vy Thảo (Member) Role: Full-Stack
-
-Nguyễn Văn Thanh Trung (Member) Role: Full-Stack
-
-
 # Create events as nft collections and tickets as nft tokens in those collections
 
 Our team's project is: A platform to support event organizers in creating events and event tickets, and subsequently, facilitating the airdrop of gifts or allowing users to exchange gifts using NFTs purchased from the events.
