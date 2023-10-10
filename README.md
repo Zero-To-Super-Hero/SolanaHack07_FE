@@ -19,18 +19,18 @@ After our team finishes the BE, we will switch to working on the FE.
 
 This project makes use of the following technology
 
-- Candy Pay
+- Solana Pay
 - Shyft
 - C#
 - ....
-
-
-
 
 ## Demo
 
 Link demo: https://solana-hack07-90waw2yww-bapcai.vercel.app/
 
+## Twitter
+
+https://twitter.com/ZTSH_NFT_Ticket
 
 ## Authors
 
