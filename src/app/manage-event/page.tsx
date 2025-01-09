@@ -47,13 +47,13 @@ export default function Page() {
           setLoading(false)
         })
     }
-  }, [publicKey, network, toast])
+  }, [publicKey, network])
 
   return (
     <div className="container">
-      <div className='grid grid-cols-12 items-center gap-5 h-full'>
-        <div id='event-list-section' className='my-10 col-span-12'>
-          <div className='grid grid-cols-12 justify-between items-center gap-5'>
+      <div className='items-center gap-5 grid grid-cols-12 h-full'>
+        <div id='event-list-section' className='col-span-12 my-10'>
+          <div className='justify-between items-center gap-5 grid grid-cols-12'>
             <div className='col-span-12 lg:col-span-4'>
               <EventFilterSelect />
             </div>
@@ -63,7 +63,7 @@ export default function Page() {
             </div>
           </div>
           <div className='text-center'>
-            <p className='text-4xl text-primary font-extrabold m-10 uppercase'>List of event</p>
+            <p className='m-10 font-extrabold text-4xl text-primary uppercase'>List of event</p>
           </div>
           <div className='my-10'>
             {!connected || !publicKey ? (
@@ -88,10 +88,10 @@ export default function Page() {
                         </Link>
                       </div>
                     ) : (
-                      <div className="grid grid-cols-12 items-center gap-5">
+                      <div className="items-center gap-5 grid grid-cols-12">
                         {
                           nfts.map((nftE, index) => (
-                            <div key={index} className='lg:col-span-3 md:col-span-6 col-span-12'>
+                            <div key={index} className='col-span-12 md:col-span-6 lg:col-span-3'>
                               <div >
                                 <EventCardItem nftEvent={nftE} />
 
