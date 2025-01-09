@@ -25,6 +25,7 @@ import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { hi } from "@/shared/types";
 import Link from "next/link"
+import { ShyftSdk, Network } from '@shyft-to/js';
 
 const formSchema = z.object({
     image: z.any().refine((file) => !!file, "Image is required."),
@@ -72,6 +73,8 @@ const formSchema = z.object({
 export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => {
     const { toast } = useToast()
     const { connected, publicKey, sendTransaction } = useWallet()
+    const shyft = new ShyftSdk({ apiKey: hi.SHYFT_API_KEY, network: Network.Devnet });
+
     const { connection } = useConnection()
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -115,13 +118,14 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
                 })
                 return
             }
-            const uploadResponse = await upload(values.image)
+            const uploadResponse = await (shyft.storage.uploadAsset(values.image))
+            // const uploadResponse = await upload(values.image)
 
-            if (!uploadResponse.success) {
+            if (!uploadResponse) {
                 toast({
                     variant: "destructive",
                     title: "Upload error",
-                    description: uploadResponse.message ?? "Unknown error",
+                    description: "Upload image failed",
                 })
                 return
             }
@@ -130,12 +134,12 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
                 name: values.name,
                 symbol: values.symbol,
                 description: values.description ?? "",
-                image: uploadResponse.result.uri,
+                image: uploadResponse.uri,
                 external_url: values.externalUrl ?? "",
                 attributes: values.attributes ?? [],
                 files: [
                     {
-                        uri: uploadResponse.result.uri,
+                        uri: uploadResponse.uri,
                         type: "image/png",
                     },
                 ],
@@ -199,10 +203,10 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
     }
 
     return (
-        <div className="max-w-xl mx-auto">
+        <div className="mx-auto max-w-xl">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="rounded-2xl shadow-cardflex flex-col gap-5 p-5 mb-5">
+                    <div className="flex-col gap-5 shadow-cardflex mb-5 p-5 rounded-2xl">
                         {/* image */}
                         <FormField
                             control={form.control}
@@ -315,7 +319,7 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
                         {/* attributes */}
 
                         {fields.map((field, index) => (
-                            <div className="flex w-full items-center gap-6" key={field.id}>
+                            <div className="flex items-center gap-6 w-full" key={field.id}>
                                 <FormField
                                     control={form.control}
                                     name={`attributes.${index}.trait_type`}
@@ -350,7 +354,7 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
                                         event.preventDefault()
                                         remove(index)
                                     }}
-                                    className="shrink-0 self-end"
+                                    className="self-end shrink-0"
                                 >
                                     <FontAwesomeIcon icon={faTrash} />
                                 </Button>
@@ -364,7 +368,7 @@ export const CreateTicketForm = ({ TokenAddress }: { TokenAddress: string }) => 
                                 handleAppendField()
                             }}
                             size="sm"
-                            className="self-start mt-4"
+                            className="mt-4 self-start"
                         >
                             <p>
                                 <span><FontAwesomeIcon icon={faPlus} size="lg" /></span> Add attributes

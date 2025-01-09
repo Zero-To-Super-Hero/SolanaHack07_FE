@@ -25,6 +25,7 @@ import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { hi } from "@/shared/types";
 import Link from "next/link"
+import { ShyftSdk, Network } from '@shyft-to/js';
 
 const formSchema = z.object({
     image: z.any().refine((file) => !!file, "Image is required."),
@@ -73,6 +74,7 @@ export const CreateEventForm = () => {
     const { toast } = useToast()
     const { connected, publicKey, sendTransaction } = useWallet()
     const { connection } = useConnection()
+    const shyft = new ShyftSdk({ apiKey: hi.SHYFT_API_KEY, network: Network.Devnet });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -115,13 +117,14 @@ export const CreateEventForm = () => {
                 })
                 return
             }
-            const uploadResponse = await upload(values.image)
+            console.log(values)
+            const uploadResponse = await (shyft.storage.uploadAsset(values.image))
 
-            if (!uploadResponse.success) {
+            if (!uploadResponse) {
                 toast({
                     variant: "destructive",
                     title: "Upload error",
-                    description: uploadResponse.message ?? "Unknown error",
+                    description: "Upload image failed",
                 })
                 return
             }
@@ -130,12 +133,12 @@ export const CreateEventForm = () => {
                 name: values.name,
                 symbol: values.symbol,
                 description: values.description ?? "",
-                image: uploadResponse.result.uri,
+                image: uploadResponse.uri,
                 external_url: values.externalUrl ?? "",
                 attributes: values.attributes ?? [],
                 files: [
                     {
-                        uri: uploadResponse.result.uri,
+                        uri: uploadResponse.uri,
                         type: "image/png",
                     },
                 ],
@@ -202,10 +205,10 @@ export const CreateEventForm = () => {
     }
 
     return (
-        <div className="max-w-xl mx-auto">
+        <div className="mx-auto max-w-xl">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="rounded-2xl shadow-cardflex flex-col gap-5 p-5 mb-5">
+                    <div className="flex-col gap-5 shadow-cardflex mb-5 p-5 rounded-2xl">
                         {/* image */}
                         <FormField
                             control={form.control}
@@ -318,7 +321,7 @@ export const CreateEventForm = () => {
                         {/* attributes */}
 
                         {fields.map((field, index) => (
-                            <div className="flex w-full items-center gap-6" key={field.id}>
+                            <div className="flex items-center gap-6 w-full" key={field.id}>
                                 <FormField
                                     control={form.control}
                                     name={`attributes.${index}.trait_type`}
@@ -353,7 +356,7 @@ export const CreateEventForm = () => {
                                         event.preventDefault()
                                         remove(index)
                                     }}
-                                    className="shrink-0 self-end"
+                                    className="self-end shrink-0"
                                 >
                                     <FontAwesomeIcon icon={faTrash} />
                                 </Button>
@@ -367,7 +370,7 @@ export const CreateEventForm = () => {
                                 handleAppendField()
                             }}
                             size="sm"
-                            className="self-start mt-4"
+                            className="mt-4 self-start"
                         >
                             <p>
                                 <span><FontAwesomeIcon icon={faPlus} size="lg" /></span> Add attributes

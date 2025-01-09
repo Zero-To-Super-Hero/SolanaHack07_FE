@@ -8,7 +8,7 @@ export type hitype = {
 
 export const hi: hitype = {
     SHYFT_API_ENDPOINT: "https://api.shyft.to/sol/v1",
-    SHYFT_API_KEY: "QedCXi-__1YxirlR",
+    SHYFT_API_KEY: "HdJ4iLZParmbagSk",
     SHYFT_TREE: "FVeRc7oAqU3bpRmtQxs3BYYhvheXwgZw1JGKKVNWDYkb",
 }
 
@@ -51,10 +51,10 @@ export type Nft = {
     is_loaded_metadata: boolean;
     is_compressed: boolean;
     merkle_tree: string;
-    image:                   string;
+    image: string;
 
 
-    
+
 }
 
 export type Attributes = {
@@ -156,48 +156,48 @@ export type UploadMetadataRequestBody = {
 /////
 
 export type Transaction = {
-    timestamp:  Date;
-    fee:        number;
-    fee_payer:  FeePayer;
-    signers:    FeePayer[];
+    timestamp: Date;
+    fee: number;
+    fee_payer: FeePayer;
+    signers: FeePayer[];
     signatures: string[];
-    protocol:   Protocol;
-    type:       Type;
-    status:     Status;
-    actions:    Action[];
+    protocol: Protocol;
+    type: Type;
+    status: Status;
+    actions: Action[];
 }
 
 export type Action = {
-    info:            Info;
+    info: Info;
     source_protocol: Protocol;
-    type:            Type;
+    type: Type;
 }
 
 export type Info = {
-    tree_authority:   TreeAuthority;
-    merkle_tree:      MerkleTree;
-    owner:            FeePayer;
-    nft_address:      string;
+    tree_authority: TreeAuthority;
+    merkle_tree: MerkleTree;
+    owner: FeePayer;
+    nft_address: string;
     update_authority: FeePayer;
-    payer?:           FeePayer;
-    nft_metadata?:    NftMetadata;
+    payer?: FeePayer;
+    nft_metadata?: NftMetadata;
 }
 
 export type MerkleTree = "Fn1pzcXiBdPUoM1a9KDyiDS7uU2Mburh1AyiAPRG9CQ1";
 
 export type NftMetadata = {
-    name:                 string;
-    symbol:               string;
-    uri:                  string;
+    name: string;
+    symbol: string;
+    uri: string;
     sellerFeeBasisPoints: number;
-    primarySaleHappened:  boolean;
-    isMutable:            boolean;
-    editionNonce:         number;
-    tokenStandard:        TokenStandard;
-    collection:           null;
-    uses:                 null;
-    tokenProgramVersion:  TokenProgramVersion;
-    creators:             Creator[];
+    primarySaleHappened: boolean;
+    isMutable: boolean;
+    editionNonce: number;
+    tokenStandard: TokenStandard;
+    collection: null;
+    uses: null;
+    tokenProgramVersion: TokenProgramVersion;
+    creators: Creator[];
 }
 
 
@@ -219,7 +219,7 @@ export type TreeAuthority = "BWgmRd2uAzapB2SpBsjKZGn2nyV1RkcVoQKA7evCh3y8";
 
 export type Protocol = {
     address: Address;
-    name:    Name;
+    name: Name;
 }
 
 export type Address = "BGUMAp9Gq7iTEuizy4pqaxsTyUCBK68MDfK752saRPUY";
@@ -232,18 +232,18 @@ export type Status = "Success";
 
 export type Attribute = {
     trait_type: string;
-    value:      string;
+    value: string;
 }
 
 export type Properties = {
     creators: Creator[];
-    files:    File[];
+    files: File[];
 }
 
 export type Collection = {
-    address:   null | string;
-    name:      string;
-    family:    null;
+    address: null | string;
+    name: string;
+    family: null;
     nft_count: number;
-    nfts:      Nft[];
+    nfts: Nft[];
 }
